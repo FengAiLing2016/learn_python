@@ -14,9 +14,9 @@ while num < 3:
     if temp:
         f = open('/learn_python/learn_python/learn_python/user/user.txt', 'r')
         for line in f.readlines():
-            pass_word = input('Password: ')
             user_save, pass_save = line.strip('\n').split()
             if user == user_save:
+                pass_word = input('Password: ')
                 if pass_word == pass_save:
                     print('good!')
                     num = 6
@@ -25,6 +25,7 @@ while num < 3:
                     num += 1
             elif user != user_save:
                 print('not user')
+                break
         f.close()
 if num == 3:
     with open('/learn_python/learn_python/learn_python/user/user_lock.txt', 'a') as f:

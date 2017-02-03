@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+#_*_coding:utf-8_*_
 num = 1
 temp = 1
 # 判断用户名是否被锁定
@@ -9,7 +11,6 @@ while num:
         if user == line.strip('\n'):
             print('lock!')
             num = 0
-            temp = 1
             break
         else:
             num = 0
@@ -32,6 +33,6 @@ if temp == 2:
             break  # 如果用户名正确跳出循环不再进行剩余的用户名判断
     f.close()
 # 当重试次数=3次将用户名写入锁定列表
-if num == 3:
-    with open('/learn_python/learn_python/user/user_lock.txt', 'a') as f:
-        f.write('\n' + user)
+    if num == 3:
+        with open('/learn_python/learn_python/user/user_lock.txt', 'a') as f:
+            f.write('\n' + user)

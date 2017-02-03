@@ -1,22 +1,32 @@
-user_dict = {'John': '11111'}  # 用户名 密码
-num = 0                        # 重试次数
-
-
-with open('/learn_python/learn_python/user.txt', 'r') as f_r:   #读取用户重试次数
-    error_num = int(f_r.read())
+num = 0
+temp = 1
 # 循环输入
 while num < 3:
     user = input('User: ')
-    pass_word = input('Password: ')
-    if (error_num == 3):    # 如果用户之前已经超过次数直接退出
-        print('超过次数')
-        break
-    else:
-        if (pass_word == user_dict['John']):    #判断密码是否正确
-            print('成功登陆')
+    f = open('/learn_python/learn_python/learn_python/user/user_lock.txt', 'r')
+    for line in f.readlines():
+        if user == line:
+            print('lock!')
+            temp = 0
+            num=4
             break
-        else:
-            print('密码错误')
-            num += 1
-    with open('/learn_python/learn_python/user.txt', 'w') as f:  #写入用户的重试次数
-        f.write(str(num))
+    f.close()
+    if temp:
+        f = open('/learn_python/learn_python/learn_python/user/user.txt', 'r')
+        for line in f.readlines():
+            user_save, pass_save = line.strip('\n').split()
+            if user == user_save:
+                pass_word = input('Password: ')
+                if pass_word == pass_save:
+                    print('good!')
+                    num = 6
+                    break
+                else:
+                    num += 1
+            elif user != user_save:
+                print('not user')
+                break
+        f.close()
+if num == 3:
+    with open('/learn_python/learn_python/learn_python/user/user_lock.txt', 'a') as f:
+        f.write(user)

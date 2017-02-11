@@ -16,3 +16,9 @@
 
 ## 修改文件指定字符串
 > /file_replace/file_place.py
+
+
+
+
+## 购物车
+> /shopping_trolley/shopping_trolley.py
